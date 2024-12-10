@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Robot, Database, BarChart } from 'lucide-react';
+import { Brain, Bot, Database, BarChart } from 'lucide-react';
 
 const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
   <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-neutral/20">
@@ -19,7 +19,7 @@ const Services = () => {
       description: "Advanced artificial intelligence algorithms for smarter, faster lending decisions."
     },
     {
-      icon: Robot,
+      icon: Bot,
       title: "Intelligent Collection Agents",
       description: "AI-driven collection agents that optimize recovery processes with machine learning."
     },
