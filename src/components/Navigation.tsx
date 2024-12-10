@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,6 +12,12 @@ const Navigation = () => {
   return (
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link to="/" className="px-4 py-2 hover:text-primary transition-colors">
+            Home
+          </Link>
+        </NavigationMenuItem>
+
         <NavigationMenuItem>
           <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -44,23 +51,15 @@ const Navigation = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <div className="grid w-[400px] gap-3 p-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">About Us</h4>
-                <p className="text-sm text-muted-foreground">
-                  Leading AI innovation in lending
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Contact</h4>
-                <p className="text-sm text-muted-foreground">
-                  Get in touch with our team
-                </p>
-              </div>
-            </div>
-          </NavigationMenuContent>
+          <Link to="/about" className="px-4 py-2 hover:text-primary transition-colors">
+            About Us
+          </Link>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <Link to="/contact" className="px-4 py-2 hover:text-primary transition-colors">
+            Contact
+          </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
