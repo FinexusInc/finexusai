@@ -2,13 +2,14 @@ import React from 'react';
 import ChatbotAgent from '../components/ChatbotAgent';
 import Services from '../components/Services';
 import Navigation from '../components/Navigation';
+import Logo from '../components/Logo';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral to-white">
       {/* Header */}
       <header className="container mx-auto py-6 px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-secondary">Finexus</h1>
+        <Logo />
         <Navigation />
       </header>
 
