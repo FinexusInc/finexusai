@@ -11,10 +11,10 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-6xl font-bold text-secondary">
-                Next-Gen Financial Solutions
+                AI-Powered Lending Solutions
               </h1>
               <p className="text-xl text-gray-600">
-                Empowering financial institutions with advanced lending and collection solutions.
+                Revolutionizing lending with advanced AI technology. Our intelligent agent-based Loan Origination System (LOS) and Loan Management System (LMS) deliver unparalleled efficiency and accuracy.
               </p>
               <div className="flex gap-4">
                 <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
@@ -39,9 +39,9 @@ const Index = () => {
       <section className="py-20 bg-secondary text-white">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Financial Services?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Experience the Power of AI in Lending</h2>
             <p className="text-gray-300 mb-8">
-              Connect with us to discover how Finexus can elevate your lending and collection processes.
+              Join the future of lending with our AI-driven solutions. Our deep expertise in lending technology and intelligent systems ensures superior results for your financial institution.
             </p>
             <button className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 transition-colors">
               Contact Us
