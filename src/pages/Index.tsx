@@ -1,10 +1,17 @@
 import React from 'react';
 import ChatbotAgent from '../components/ChatbotAgent';
 import Services from '../components/Services';
+import Navigation from '../components/Navigation';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral to-white">
+      {/* Header */}
+      <header className="container mx-auto py-6 px-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-secondary">Finexus</h1>
+        <Navigation />
+      </header>
+
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center">
         <div className="container">
@@ -14,7 +21,7 @@ const Index = () => {
                 AI-Powered Lending Solutions
               </h1>
               <p className="text-xl text-gray-600">
-                Revolutionizing lending with advanced AI technology. Our intelligent agent-based Loan Origination System (LOS) and Loan Management System (LMS) deliver unparalleled efficiency and accuracy.
+                Our intelligent agent-based Loan Origination System (LOS) and Loan Management System (LMS) automate complex lending operations with unmatched precision and efficiency.
               </p>
               <div className="flex gap-4">
                 <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
