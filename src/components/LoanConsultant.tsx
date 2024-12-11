@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, FileCheck, HelpCircle, UserRound } from 'lucide-react';
 
+type MessageType = {
+  text: string;
+  type: 'agent' | 'action' | 'advice';
+};
+
 const LoanConsultant = () => {
-  const [messages, setMessages] = useState<Array<{text: string, type: 'agent' | 'action' | 'advice'}>>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
-  const conversation = [
+  const conversation: MessageType[] = [
     { text: "Hello! I'm Alex, your dedicated Loan Consultant. I specialize in helping businesses find the right financing solutions.", type: 'agent' },
     { text: "I notice you're exploring financing options. Let me provide a personalized assessment.", type: 'agent' },
     { text: "Analyzing your business profile...", type: 'action' },

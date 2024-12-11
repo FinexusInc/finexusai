@@ -3,11 +3,16 @@ import Navigation from '../components/Navigation';
 import LoanConsultant from '../components/LoanConsultant';
 import { MessageCircle, Upload, FileCheck, HelpCircle } from 'lucide-react';
 
+type MessageType = {
+  text: string;
+  type: 'agent' | 'action' | 'upload';
+};
+
 const LoanOriginationAgent = () => {
-  const [messages, setMessages] = useState<Array<{text: string, type: 'agent' | 'action' | 'upload'}>>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
-  const conversation = [
+  const conversation: MessageType[] = [
     { text: "Hi Mike, I'm Sarah, your AI Loan Assistant. I'll be helping you with your SBA 7(a) loan application today.", type: 'agent' },
     { text: "I see you're interested in a $250,000 loan. Let me analyze your preliminary information.", type: 'agent' },
     { text: "Analyzing credit report and business financials...", type: 'action' },
