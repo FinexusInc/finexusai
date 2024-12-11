@@ -18,7 +18,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#9b87f5",
+          DEFAULT: "#33C3F0",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -26,7 +26,7 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         accent: {
-          DEFAULT: "#7E69AB",
+          DEFAULT: "#D3E4FD",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
@@ -34,7 +34,7 @@ export default {
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
+          DEFAULT: "#8E9196",
           foreground: "hsl(var(--muted-foreground))",
         },
         neutral: "#F1F1F1",
@@ -79,10 +79,13 @@ export default {
         typing: "typing 3.5s steps(40, end), blink .75s step-end infinite",
         draw: "draw 2.5s ease-out forwards",
       },
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 'sans-serif'],
+      },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "1rem",
+        md: "0.75rem",
+        sm: "0.5rem",
       },
     },
   },
