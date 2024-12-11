@@ -67,12 +67,17 @@ export default {
         blink: {
           "50%": { borderColor: "transparent" },
         },
+        draw: {
+          from: { strokeDashoffset: "1000" },
+          to: { strokeDashoffset: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 3s ease-in-out infinite",
         typing: "typing 3.5s steps(40, end), blink .75s step-end infinite",
+        draw: "draw 2.5s ease-out forwards",
       },
       borderRadius: {
         lg: "var(--radius)",
