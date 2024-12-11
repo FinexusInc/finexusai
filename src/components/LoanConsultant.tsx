@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { MessageCircle, FileCheck, Check, CreditCard, ChartBar, Send, HelpCircle, UserRound } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { MessageCircle, FileCheck, Check, CreditCard, ChartBar, Send, HelpCircle, UserRound, ScrollText } from 'lucide-react';
+import { ScrollArea } from "./ui/scroll-area";
+import { Textarea } from "./ui/textarea";
 
 type MessageType = {
   text: string;
@@ -9,6 +11,8 @@ type MessageType = {
 const LoanConsultant = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const conversation: MessageType[] = [
     { text: "Hello! I'm Alex, your dedicated Loan Consultant. I'll be guiding you through our verification process today.", type: 'agent' },
@@ -41,7 +45,13 @@ const LoanConsultant = () => {
         setTimeout(() => {
           setIsTyping(false);
           setMessages(prev => [...prev, conversation[index]]);
-          setTimeout(() => addMessage(index + 1), 1000);
+          setTimeout(() => {
+            addMessage(index + 1);
+            // Scroll to bottom when new message is added
+            if (scrollRef.current) {
+              scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 1000);
         }, 2000);
       }
     };
@@ -57,6 +67,18 @@ const LoanConsultant = () => {
     if (text.includes("Step 5")) return <ChartBar className="w-5 h-5 text-indigo-500" />;
     if (text.includes("Final Step")) return <Send className="w-5 h-5 text-teal-500" />;
     return null;
+  };
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputMessage.trim()) {
+      setMessages(prev => [...prev, { text: inputMessage, type: 'agent' }]);
+      setInputMessage('');
+      // Scroll to bottom after sending message
+      if (scrollRef.current) {
+        scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -83,27 +105,48 @@ const LoanConsultant = () => {
               </button>
             </div>
           </div>
-          <div className="space-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`animate-fade-in [animation-delay:${index * 200}ms] ${
-                  message.type === 'action' ? 'pl-4 text-gray-600 border-l-2 border-blue-500 flex items-center gap-2' :
-                  message.type === 'advice' ? 'bg-blue-50 p-4 rounded-lg ml-4' : ''
-                }`}
-              >
-                {getIcon(message.type, message.text)}
-                <p className="text-gray-900">{message.text}</p>
-              </div>
-            ))}
-            {isTyping && (
-              <div className="flex gap-2 animate-pulse">
-                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                <span className="w-2 h-2 bg-blue-500 rounded-full [animation-delay:200ms]"></span>
-                <span className="w-2 h-2 bg-blue-500 rounded-full [animation-delay:400ms]"></span>
-              </div>
-            )}
-          </div>
+          
+          <ScrollArea className="h-[400px] pr-4 mb-4">
+            <div className="space-y-4">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`animate-fade-in [animation-delay:${index * 200}ms] ${
+                    message.type === 'action' ? 'pl-4 text-gray-600 border-l-2 border-blue-500 flex items-center gap-2' :
+                    message.type === 'advice' ? 'bg-blue-50 p-4 rounded-lg ml-4' : ''
+                  }`}
+                >
+                  {getIcon(message.type, message.text)}
+                  <p className="text-gray-900">{message.text}</p>
+                </div>
+              ))}
+              {isTyping && (
+                <div className="flex gap-2 animate-pulse">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full [animation-delay:200ms]"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full [animation-delay:400ms]"></span>
+                </div>
+              )}
+              <div ref={scrollRef} />
+            </div>
+          </ScrollArea>
+
+          <form onSubmit={handleSendMessage} className="flex gap-2 mt-4">
+            <Textarea
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              placeholder="Type your message..."
+              className="min-h-[50px] resize-none"
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center gap-2"
+              disabled={!inputMessage.trim()}
+            >
+              <Send size={16} />
+              Send
+            </button>
+          </form>
         </div>
       </div>
     </div>
