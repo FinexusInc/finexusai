@@ -69,7 +69,7 @@ const LoanConsultant = () => {
           <div className="flex justify-between items-start mb-4">
             <div className="animate-fade-in [animation-delay:200ms]">
               <h3 className="text-lg font-semibold text-gray-900">Alex</h3>
-              <p className="text-sm text-gray-500">Senior Loan Consultant</p>
+              <p className="text-sm text-gray-500">Senior Loan Consultant Agent</p>
             </div>
             <div className="flex gap-2 animate-fade-in [animation-delay:400ms]">
               <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors hover:scale-110">
