@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
+import LoanConsultant from '../components/LoanConsultant';
 import { MessageCircle, Upload, FileCheck, HelpCircle } from 'lucide-react';
 
 const LoanOriginationAgent = () => {
@@ -103,15 +104,24 @@ const Solutions = () => {
       <section className="py-20">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-secondary mb-8 animate-fade-in">Loan Origination Agent</h2>
-            <LoanOriginationAgent />
-            <div className="bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-gray-100 animate-fade-in [animation-delay:1200ms]">
+            <h2 className="text-3xl font-bold text-secondary mb-8 animate-fade-in">Loan Services</h2>
+            <div className="space-y-12">
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4 animate-fade-in">Loan Consultant</h3>
+                <LoanConsultant />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4 animate-fade-in">Loan Origination Agent</h3>
+                <LoanOriginationAgent />
+              </div>
+            </div>
+            <div className="bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-gray-100 mt-12 animate-fade-in [animation-delay:1200ms]">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                About Our AI Loan Assistant
+                About Our AI Loan Assistants
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Our AI-powered loan assistant streamlines the entire loan origination process, 
-                from application to approval. With advanced document processing capabilities 
+                Our AI-powered loan assistants streamline the entire lending process, 
+                from initial consultation to final approval. With advanced analysis capabilities 
                 and real-time assistance, we make getting a business loan faster and easier 
                 than ever before.
               </p>
