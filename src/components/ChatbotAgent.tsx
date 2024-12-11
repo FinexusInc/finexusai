@@ -12,20 +12,20 @@ const ChatbotAgent = () => {
       result: "✓ Application approved! Credit score: 720, Risk assessment complete"
     },
     {
-      action: "Monitoring payment schedules...",
-      result: "✓ Generated payment reminders for 50 accounts"
+      action: "Reviewing SBA 7(a) loan requirements...",
+      result: "✓ $250,000 loan pre-qualification complete"
     },
     {
-      action: "Analyzing collection cases...",
-      result: "✓ Prioritized 25 accounts for recovery, Restructured 10 loans"
+      action: "Analyzing business financials...",
+      result: "✓ Last 3 years of tax returns verified"
     },
     {
-      action: "Updating loan portfolio...",
-      result: "✓ Risk metrics updated, Portfolio health: 95%"
+      action: "Calculating loan terms...",
+      result: "✓ 10-year term, 6.5% interest rate available"
     },
     {
-      action: "Running credit analysis...",
-      result: "✓ Credit models updated with latest market data"
+      action: "Preparing documentation...",
+      result: "✓ All required forms ready for submission"
     }
   ];
 
@@ -52,7 +52,16 @@ const ChatbotAgent = () => {
 
   return (
     <div className="relative animate-float">
-      <div className="absolute -top-16 right-0 bg-white p-4 rounded-lg shadow-lg max-w-xs w-72">
+      <div className="absolute -top-16 right-0 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-xs w-80 border border-gray-100">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 flex items-center justify-center">
+            <span className="text-white text-sm font-semibold">AI</span>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900">Sarah</h4>
+            <p className="text-xs text-gray-500">AI Loan Assistant</p>
+          </div>
+        </div>
         {isTyping ? (
           <div>
             <div className="flex gap-2 mb-2">
@@ -65,11 +74,11 @@ const ChatbotAgent = () => {
         ) : (
           <div className="space-y-1">
             <p className="text-secondary text-sm font-medium">{message}</p>
-            <p className="text-xs text-gray-500">AI Agent working autonomously</p>
+            <p className="text-xs text-gray-500">AI Agent processing loans</p>
           </div>
         )}
       </div>
-      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg">
+      <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-105 transition-transform">
         <MessageCircle className="w-8 h-8 text-white" />
       </div>
     </div>
