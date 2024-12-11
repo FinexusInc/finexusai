@@ -18,7 +18,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#33C3F0",
+          DEFAULT: "#8B5CF6", // Vivid purple for glossy effect
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -26,7 +26,7 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         accent: {
-          DEFAULT: "#D3E4FD",
+          DEFAULT: "#E5DEFF", // Soft purple for subtle accents
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
@@ -37,7 +37,7 @@ export default {
           DEFAULT: "#8E9196",
           foreground: "hsl(var(--muted-foreground))",
         },
-        neutral: "#F1F1F1",
+        neutral: "#F8FAFC", // Lighter background for glossy effect
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -79,13 +79,12 @@ export default {
         typing: "typing 3.5s steps(40, end), blink .75s step-end infinite",
         draw: "draw 2.5s ease-out forwards",
       },
-      fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 'sans-serif'],
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-glass': 'linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1))',
       },
-      borderRadius: {
-        lg: "1rem",
-        md: "0.75rem",
-        sm: "0.5rem",
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
       },
     },
   },
