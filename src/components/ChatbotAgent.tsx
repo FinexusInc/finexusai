@@ -8,24 +8,28 @@ const ChatbotAgent = () => {
   
   const tasks = [
     {
-      action: "Processing loan application for John Smith...",
-      result: "✓ Application approved! Credit score: 720, Risk assessment complete"
+      action: "Analyzing credit report for pre-approval...",
+      result: "✓ Credit score: 720 - Excellent qualification potential"
     },
     {
-      action: "Reviewing SBA 7(a) loan requirements...",
-      result: "✓ $250,000 loan pre-qualification complete"
+      action: "Calculating debt-to-income ratio...",
+      result: "✓ DTI: 32% - Within preferred lending parameters"
     },
     {
-      action: "Analyzing business financials...",
-      result: "✓ Last 3 years of tax returns verified"
+      action: "Reviewing business cash flow statements...",
+      result: "✓ Monthly revenue: $45,000 - Strong cash position"
     },
     {
-      action: "Calculating loan terms...",
-      result: "✓ 10-year term, 6.5% interest rate available"
+      action: "Assessing collateral value...",
+      result: "✓ Property value: $850,000 - Sufficient security"
     },
     {
-      action: "Preparing documentation...",
-      result: "✓ All required forms ready for submission"
+      action: "Checking industry risk factors...",
+      result: "✓ Industry: Technology - Low risk category"
+    },
+    {
+      action: "Evaluating loan terms...",
+      result: "✓ Recommended: 15-year term at 5.75% APR"
     }
   ];
 
