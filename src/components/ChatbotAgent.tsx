@@ -58,7 +58,7 @@ const ChatbotAgent = () => {
             <span className="text-white text-sm font-semibold">AI</span>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-gray-900">Sarah</h4>
+            <h4 className="text-sm font-semibold text-gray-900">Avi</h4>
             <p className="text-xs text-gray-500">AI Loan Assistant</p>
           </div>
         </div>
