@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, FileCheck, Check, CreditCard, ChartBar, Send, HelpCircle, UserRound, ScrollText } from 'lucide-react';
+import { MessageCircle, FileCheck, Check, CreditCard, ChartBar, Send, HelpCircle, UserRound, ScrollText, X } from 'lucide-react';
 import { ScrollArea } from "./ui/scroll-area";
 import { Textarea } from "./ui/textarea";
 
 type MessageType = {
   text: string;
-  type: 'agent' | 'action' | 'advice';
+  type: 'agent' | 'action' | 'advice' | 'internal' | 'status';
+  status?: 'pass' | 'fail';
 };
 
 const LoanConsultant = () => {
@@ -15,27 +16,27 @@ const LoanConsultant = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const conversation: MessageType[] = [
-    { text: "Hello! I'm Alex, your dedicated Loan Consultant. I'll be guiding you through our verification process today.", type: 'agent' },
-    { text: "Let me start by reviewing your application...", type: 'agent' },
+    { text: "Hello Alex, this is Sarah from Internal Loan Processing. Could you please pull up application #100283393 for review?", type: 'internal' },
+    { text: "Of course, Sarah. Let me retrieve that application for you right away...", type: 'agent' },
+    { text: "Pulling application #100283393...", type: 'action' },
     { text: "Step 1: Verifying Application Completeness", type: 'action' },
-    { text: "✓ All required fields are properly filled", type: 'advice' },
-    { text: "✓ Supporting documents have been attached", type: 'advice' },
+    { text: "All required fields are properly filled", type: 'status', status: 'pass' },
+    { text: "Supporting documents verification", type: 'status', status: 'fail' },
     { text: "Step 2: Confirming Eligibility", type: 'action' },
-    { text: "✓ Business meets size requirements", type: 'advice' },
-    { text: "✓ Industry type is eligible", type: 'advice' },
+    { text: "Business meets size requirements", type: 'status', status: 'pass' },
+    { text: "Industry type eligibility check", type: 'status', status: 'pass' },
     { text: "Step 3: Document Verification", type: 'action' },
-    { text: "✓ Business registration verified", type: 'advice' },
-    { text: "✓ Tax returns are consistent", type: 'advice' },
+    { text: "Business registration verification", type: 'status', status: 'pass' },
+    { text: "Tax returns consistency check", type: 'status', status: 'fail' },
     { text: "Step 4: Credit Assessment", type: 'action' },
-    { text: "✓ Credit score: 720 (Excellent)", type: 'advice' },
-    { text: "✓ No adverse credit history", type: 'advice' },
+    { text: "Credit score evaluation: 720", type: 'status', status: 'pass' },
+    { text: "Credit history review", type: 'status', status: 'pass' },
     { text: "Step 5: Loan Pre-Approval Evaluation", type: 'action' },
-    { text: "✓ Debt-to-Income ratio: 32% (Good)", type: 'advice' },
-    { text: "✓ Cash flow analysis: Positive", type: 'advice' },
-    { text: "Final Step: Submitting to Underwriter", type: 'action' },
-    { text: "✓ Application package prepared", type: 'advice' },
-    { text: "✓ Forwarded to lending partners", type: 'advice' },
-    { text: "Great news! Your application has been successfully processed and submitted to our underwriting team. They will contact you within 2 business days with their decision.", type: 'agent' },
+    { text: "Debt-to-Income ratio analysis: 32%", type: 'status', status: 'pass' },
+    { text: "Cash flow analysis", type: 'status', status: 'pass' },
+    { text: "Sarah, I've completed the review of application #100283393. We have two issues that need attention:", type: 'agent' },
+    { text: "1. Missing supporting documents\n2. Inconsistencies in tax returns", type: 'advice' },
+    { text: "Would you like me to request these documents from the applicant?", type: 'agent' },
   ];
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const LoanConsultant = () => {
           setMessages(prev => [...prev, conversation[index]]);
           setTimeout(() => {
             addMessage(index + 1);
-            // Scroll to bottom when new message is added
             if (scrollRef.current) {
               scrollRef.current.scrollIntoView({ behavior: 'smooth' });
             }
@@ -59,13 +59,14 @@ const LoanConsultant = () => {
     addMessage(0);
   }, []);
 
-  const getIcon = (type: string, text: string) => {
-    if (text.includes("Step 1")) return <Check className="w-5 h-5 text-green-500" />;
-    if (text.includes("Step 2")) return <FileCheck className="w-5 h-5 text-blue-500" />;
-    if (text.includes("Step 3")) return <FileCheck className="w-5 h-5 text-purple-500" />;
-    if (text.includes("Step 4")) return <CreditCard className="w-5 h-5 text-orange-500" />;
-    if (text.includes("Step 5")) return <ChartBar className="w-5 h-5 text-indigo-500" />;
-    if (text.includes("Final Step")) return <Send className="w-5 h-5 text-teal-500" />;
+  const getIcon = (type: string, text: string, status?: string) => {
+    if (status === 'pass') return <Check className="w-5 h-5 text-green-500" />;
+    if (status === 'fail') return <X className="w-5 h-5 text-red-500" />;
+    if (text.includes("Step 1")) return <FileCheck className="w-5 h-5 text-blue-500" />;
+    if (text.includes("Step 2")) return <FileCheck className="w-5 h-5 text-purple-500" />;
+    if (text.includes("Step 3")) return <ScrollText className="w-5 h-5 text-orange-500" />;
+    if (text.includes("Step 4")) return <CreditCard className="w-5 h-5 text-indigo-500" />;
+    if (text.includes("Step 5")) return <ChartBar className="w-5 h-5 text-teal-500" />;
     return null;
   };
 
@@ -74,7 +75,6 @@ const LoanConsultant = () => {
     if (inputMessage.trim()) {
       setMessages(prev => [...prev, { text: inputMessage, type: 'agent' }]);
       setInputMessage('');
-      // Scroll to bottom after sending message
       if (scrollRef.current) {
         scrollRef.current.scrollIntoView({ behavior: 'smooth' });
       }
@@ -113,11 +113,15 @@ const LoanConsultant = () => {
                   key={index}
                   className={`animate-fade-in [animation-delay:${index * 200}ms] ${
                     message.type === 'action' ? 'pl-4 text-gray-600 border-l-2 border-blue-500 flex items-center gap-2' :
-                    message.type === 'advice' ? 'bg-blue-50 p-4 rounded-lg ml-4' : ''
+                    message.type === 'advice' ? 'bg-blue-50 p-4 rounded-lg ml-4' :
+                    message.type === 'internal' ? 'bg-purple-50 p-4 rounded-lg' :
+                    message.type === 'status' ? `pl-4 ${message.status === 'pass' ? 'text-green-600' : 'text-red-600'} flex items-center gap-2` : ''
                   }`}
                 >
-                  {getIcon(message.type, message.text)}
-                  <p className="text-gray-900">{message.text}</p>
+                  {getIcon(message.type, message.text, message.status)}
+                  <p className={message.type === 'status' ? (message.status === 'pass' ? 'text-green-600' : 'text-red-600') : 'text-gray-900'}>
+                    {message.text}
+                  </p>
                 </div>
               ))}
               {isTyping && (
