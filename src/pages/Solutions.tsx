@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import { MessageCircle, Upload, FileCheck, HelpCircle } from 'lucide-react';
 
 const LoanOriginationAgent = () => {
+  const [messages, setMessages] = useState<Array<{text: string, type: 'agent' | 'action' | 'upload'}>>([]);
+  const [isTyping, setIsTyping] = useState(false);
+
+  const conversation = [
+    { text: "Hi Mike, I'm Sarah, your AI Loan Assistant. I'll be helping you with your SBA 7(a) loan application today.", type: 'agent' },
+    { text: "I see you're interested in a $250,000 loan. Let me analyze your preliminary information.", type: 'agent' },
+    { text: "Analyzing credit report and business financials...", type: 'action' },
+    { text: "Based on the initial review, your application looks promising! Here's what I found:", type: 'agent' },
+    { text: "✓ Credit Score: 720 - Excellent qualification potential", type: 'action' },
+    { text: "✓ Business Revenue: $45,000/month - Strong cash position", type: 'action' },
+    { text: "To proceed further, I'll need a few documents from you:", type: 'agent' },
+    { text: "1. Last 3 years of federal business tax returns\n2. Current balance sheet\n3. Profit & loss statement", type: 'upload' },
+  ];
+
+  useEffect(() => {
+    const addMessage = (index: number) => {
+      if (index < conversation.length) {
+        setIsTyping(true);
+        setTimeout(() => {
+          setIsTyping(false);
+          setMessages(prev => [...prev, conversation[index]]);
+          setTimeout(() => addMessage(index + 1), 1000);
+        }, 2000);
+      }
+    };
+
+    addMessage(0);
+  }, []);
+
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-8 animate-fade-in">
+    <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 mb-8 animate-fade-in">
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 flex items-center justify-center flex-shrink-0 animate-scale-in">
           <span className="text-white text-lg font-semibold">AI</span>
@@ -28,19 +57,32 @@ const LoanOriginationAgent = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <p className="text-gray-900 animate-fade-in [animation-delay:600ms]">
-              Hi Mike, Congratulations on starting your $250,000 SBA 7(a) loan application.
-            </p>
-            <p className="text-gray-900 animate-fade-in [animation-delay:800ms]">
-              Next, we'll need your last 3 years of federal business tax returns and (2) other documents. You can{' '}
-              <button className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 story-link">
-                <Upload size={16} />
-                upload them here
-              </button>.
-            </p>
-            <p className="text-gray-900 animate-fade-in [animation-delay:1000ms]">
-              Let me know if you have any questions - I'm happy to help.
-            </p>
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`animate-fade-in [animation-delay:${index * 200}ms] ${
+                  message.type === 'action' ? 'pl-4 text-gray-600 border-l-2 border-primary' :
+                  message.type === 'upload' ? 'bg-gray-50 p-4 rounded-lg' : ''
+                }`}
+              >
+                <p className="text-gray-900">
+                  {message.text}
+                  {message.type === 'upload' && (
+                    <button className="mt-2 text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 story-link">
+                      <Upload size={16} />
+                      Upload Documents
+                    </button>
+                  )}
+                </p>
+              </div>
+            ))}
+            {isTyping && (
+              <div className="flex gap-2 animate-pulse">
+                <span className="w-2 h-2 bg-primary rounded-full"></span>
+                <span className="w-2 h-2 bg-primary rounded-full [animation-delay:200ms]"></span>
+                <span className="w-2 h-2 bg-primary rounded-full [animation-delay:400ms]"></span>
+              </div>
+            )}
           </div>
         </div>
       </div>
