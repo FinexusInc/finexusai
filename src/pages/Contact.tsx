@@ -3,8 +3,64 @@ import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from '../components/Logo';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form"
+import { useToast } from "@/components/ui/use-toast"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+
+type FormData = {
+  name: string
+  email: string
+  message: string
+}
 
 const Contact = () => {
+  const { toast } = useToast()
+  const form = useForm<FormData>()
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: "YOUR-ACCESS-KEY", // You'll need to replace this with your Web3Forms access key
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          to: "avinash@finexusinc.com"
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully",
+          description: "We'll get back to you soon!",
+        })
+        form.reset()
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error sending message",
+        description: "Please try again later.",
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral to-white">
       <header className="container mx-auto py-6 px-4 flex justify-between items-center">
@@ -68,23 +124,56 @@ const Contact = () => {
               </div>
             </div>
             
-            <form className="space-y-6 bg-white p-8 rounded-xl shadow-sm mt-12">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                <input type="text" className="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input type="email" className="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                <textarea rows={4} className="w-full px-4 py-2 border rounded-lg"></textarea>
-              </div>
-              <button className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors">
-                Send Message
-              </button>
-            </form>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-xl shadow-sm mt-12">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Your name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="Your email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Your message" 
+                          className="min-h-[120px]" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </section>
