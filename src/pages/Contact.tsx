@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from '../components/Logo';
+import Navigation from '../components/Navigation';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -45,7 +46,7 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: "c4f4c7d5-d8e9-4d9f-b8e7-9f9f9f9f9f9", // Replace this with your actual Web3Forms access key
+          access_key: "d6215494-12fd-4a4a-8939-68701c51bb98",
           name: data.name,
           email: data.email,
           message: data.message,
