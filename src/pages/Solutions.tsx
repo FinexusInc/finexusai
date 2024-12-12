@@ -3,7 +3,7 @@ import Navigation from '../components/Navigation';
 import LoanConsultant from '../components/LoanConsultant';
 import Logo from '../components/Logo';
 import { Link } from 'react-router-dom';
-import { FileCheck, Users, ChartBar, Shield, Clock, Robot, Brain, DollarSign, Smile } from 'lucide-react';
+import { FileCheck, Users, ChartBar, Shield, Clock, Bot, Brain, DollarSign, Smile } from 'lucide-react';
 
 const Solutions = () => {
   return (
@@ -71,7 +71,7 @@ const Solutions = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <Robot className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <Bot className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">End-to-End Automation</h4>
                       <p className="text-muted-foreground text-sm">Streamline the entire loan lifecycle with intelligent workflows and automated document processing.</p>
