@@ -48,7 +48,3 @@ jobs:
         run: |
           gsutil -m rsync -r ./dist/ gs://finexusinc.ai/
 
-      # Optional: Set permissions on the bucket (if needed)
-      - name: Set public read permissions
-        run: |
-          gsutil -m acl ch -r -u AllUsers:R gs:// finexusinc.ai/
