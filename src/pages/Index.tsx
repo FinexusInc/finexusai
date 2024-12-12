@@ -7,7 +7,7 @@ import ChatbotAgent from '../components/ChatbotAgent';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[90vh] bg-white">
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg bg-white/80 border-b border-gray-100 z-50">
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
