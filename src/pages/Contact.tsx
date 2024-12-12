@@ -1,12 +1,16 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Logo from '../components/Logo';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral to-white">
       <header className="container mx-auto py-6 px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-secondary">Finexus</h1>
+        <Link to="/">
+          <Logo />
+        </Link>
         <Navigation />
       </header>
       

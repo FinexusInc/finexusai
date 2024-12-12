@@ -1,13 +1,17 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import LoanConsultant from '../components/LoanConsultant';
+import Logo from '../components/Logo';
+import { Link } from 'react-router-dom';
 
 const Solutions = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral to-white">
       <header className="sticky top-0 backdrop-blur-lg bg-white/80 border-b border-gray-100 z-50">
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-secondary">Finexus</h1>
+          <Link to="/">
+            <Logo />
+          </Link>
           <Navigation />
         </div>
       </header>
