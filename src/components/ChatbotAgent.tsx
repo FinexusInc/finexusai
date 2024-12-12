@@ -62,8 +62,8 @@ const ChatbotAgent = () => {
             <span className="text-white text-sm font-semibold">AI</span>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-gray-900">Avi</h4>
-            <p className="text-xs text-gray-500">AI Loan Assistant</p>
+            <h4 className="text-sm font-semibold text-gray-900">Alex</h4>
+            <p className="text-xs text-gray-500">Finexus Agent</p>
           </div>
         </div>
         {isTyping ? (
