@@ -22,11 +22,11 @@ const Solutions = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-secondary mb-4 animate-fade-in">
-                Back Office Solutions in Action
+                AI Agents for Banks & FinTechs
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Experience our intelligent loan processing system that streamlines operations, 
-                reduces manual work, and ensures compliance for lending institutions.
+                Experience our intelligent AI agents that streamline operations, automate complex decisions, 
+                and ensure compliance for financial institutions.
               </p>
             </div>
 
@@ -67,7 +67,7 @@ const Solutions = () => {
 
             {/* Summary Section */}
             <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
-              <h3 className="text-2xl font-bold text-secondary mb-6">Empowering Lender Staff for Smarter Loan Management</h3>
+              <h3 className="text-2xl font-bold text-secondary mb-6">Empowering Financial Institutions with AI</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
