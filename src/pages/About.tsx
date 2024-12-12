@@ -90,13 +90,6 @@ const About = () => {
           </p>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-secondary mb-4">Raising the Bar</h2>
-          <p className="text-gray-600">
-            Our solutions are not just efficient; they're seamless and scalable. With a profound understanding of the lending industry and its regulatory complexities, we offer solutions that outshine the competition.
-          </p>
-        </section>
-
         <section className="bg-white rounded-xl shadow-sm p-8 mb-16">
           <h2 className="text-3xl font-bold text-secondary mb-8 text-center">Get in Touch</h2>
           <h3 className="text-xl font-semibold text-center mb-8">Ready to Embark on a Journey of Financial Innovation?</h3>
