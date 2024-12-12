@@ -47,6 +47,5 @@ jobs:
       - name: Deploy to Google Cloud Storage
         run: |
           gsutil -m rsync -r ./dist/ gs://finexusinc.ai/
-          gcloud storage buckets update finexusinc.ai --web-main-page-suffix=index.html 
-
+         
 
