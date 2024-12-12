@@ -3,7 +3,7 @@ import Navigation from '../components/Navigation';
 import LoanConsultant from '../components/LoanConsultant';
 import Logo from '../components/Logo';
 import { Link } from 'react-router-dom';
-import { FileCheck, Users, ChartBar, Shield } from 'lucide-react';
+import { FileCheck, Users, ChartBar, Shield, Clock, Robot, Brain, DollarSign, Smile } from 'lucide-react';
 
 const Solutions = () => {
   return (
@@ -30,6 +30,7 @@ const Solutions = () => {
               </p>
             </div>
 
+            {/* Key Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <div className="p-6 bg-white rounded-lg shadow-md border border-gray-100">
                 <FileCheck className="w-10 h-10 text-primary mb-4" />
@@ -61,6 +62,45 @@ const Solutions = () => {
                 <p className="text-muted-foreground">
                   Automated compliance checks and regulatory requirement monitoring.
                 </p>
+              </div>
+            </div>
+
+            {/* Summary Section */}
+            <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold text-secondary mb-6">Empowering Lender Staff for Smarter Loan Management</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Robot className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">End-to-End Automation</h4>
+                      <p className="text-muted-foreground text-sm">Streamline the entire loan lifecycle with intelligent workflows and automated document processing.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Brain className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">AI-Powered Insights</h4>
+                      <p className="text-muted-foreground text-sm">Make smarter decisions with predictive analytics and risk assessment tools.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Increased Efficiency</h4>
+                      <p className="text-muted-foreground text-sm">Reduce processing time and minimize errors through automated validation and checks.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Smile className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Superior Experience</h4>
+                      <p className="text-muted-foreground text-sm">Deliver faster approvals and transparent communication to borrowers.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
