@@ -39,7 +39,9 @@ jobs:
 
       # Authenticate with Google Cloud using Service Account Key stored in GitHub Secrets
       - name: Authenticate with Google Cloud
-        run: echo "${{ secrets.GCP_SA_KEY }}" | gcloud auth activate-service-account --key-file=-
+        run: | 
+          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > key.json
+          gcloud auth activate-service-account --key-file=key.json
 
       # Deploy the build to the GCS bucket
       - name: Deploy to Google Cloud Storage
