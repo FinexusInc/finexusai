@@ -44,9 +44,9 @@ jobs:
       # Deploy the build to the GCS bucket
       - name: Deploy to Google Cloud Storage
         run: |
-          gsutil -m rsync -r ./dist/ gs://your-bucket-name/
+          gsutil -m rsync -r ./dist/ gs://finexusinc.ai/
 
       # Optional: Set permissions on the bucket (if needed)
       - name: Set public read permissions
         run: |
-          gsutil -m acl ch -r -u AllUsers:R gs://your-bucket-name/
+          gsutil -m acl ch -r -u AllUsers:R gs:// finexusinc.ai/
