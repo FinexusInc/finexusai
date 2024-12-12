@@ -15,7 +15,6 @@ const About = () => {
     { name: 'Ashish Kumar', role: 'Tech Lead' }, 
     { name: 'Rakesh Ranjan', role: 'UI/UX Lead' },
     { name: 'Sandesh Kirave', role: 'QA Lead' },
-    { name: 'Vaibhav Tompe', role: 'Tech Lead' },
   ];
 
   return (
