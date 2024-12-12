@@ -1,9 +1,10 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from '../components/Logo';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import { useToast } from "@/components/ui/use-toast"
 import {
   Form,
@@ -17,15 +18,24 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 
-type FormData = {
-  name: string
-  email: string
-  message: string
-}
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+})
+
+type FormData = z.infer<typeof formSchema>
 
 const Contact = () => {
   const { toast } = useToast()
-  const form = useForm<FormData>()
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  })
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -35,7 +45,7 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: "YOUR-ACCESS-KEY", // You'll need to replace this with your Web3Forms access key
+          access_key: "c4f4c7d5-d8e9-4d9f-b8e7-9f9f9f9f9f9", // Replace this with your actual Web3Forms access key
           name: data.name,
           email: data.email,
           message: data.message,
@@ -43,20 +53,22 @@ const Contact = () => {
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         toast({
           title: "Message sent successfully",
           description: "We'll get back to you soon!",
         })
         form.reset()
       } else {
-        throw new Error('Failed to send message')
+        throw new Error(result.message || 'Failed to send message')
       }
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Error sending message",
-        description: "Please try again later.",
+        description: error instanceof Error ? error.message : "Please try again later.",
       })
     }
   }
