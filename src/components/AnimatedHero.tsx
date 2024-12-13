@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bot, FileText, Settings, MessageSquare, ArrowRight } from 'lucide-react';
+import ROICalculator from './ROICalculator';
 
 const AnimatedHero = () => {
   return (
@@ -16,9 +17,7 @@ const AnimatedHero = () => {
           <button className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 md:px-8 py-3 md:py-4 rounded-full hover:shadow-glass transition-all duration-300 hover:-translate-y-1">
             Book a demo
           </button>
-          <button className="bg-gradient-glass backdrop-blur-sm border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-full hover:shadow-glass transition-all duration-300 hover:-translate-y-1 text-primary">
-            Calculate ROI
-          </button>
+          <ROICalculator />
         </div>
       </div>
 
