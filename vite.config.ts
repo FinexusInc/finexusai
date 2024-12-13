@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: '/finexuswebsite/',  // Update this to match your bucket name
+  base: '/finexuswebsite/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -30,9 +30,7 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
       },
     },
-    // Ensure all assets are included in the build
     assetsInlineLimit: 0,
-    // Generate clean URLs
     chunkSizeWarningLimit: 1000,
   },
   plugins: [
