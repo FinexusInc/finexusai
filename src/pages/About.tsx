@@ -29,13 +29,13 @@ const About = () => {
       <main className="container mx-auto px-4 py-12">
         <section className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-6">
-            Your Technology Partner in Digital Transformation: Reshaping Financial Technologies
+            Finexus: Your AI-Powered Technology Partner in Digital Lending Transformation
           </h1>
           <p className="text-lg text-gray-600 mb-6">
-            In a world where financial technology is the bridge between the borrower and the lender, we're your trailblazers, carving new paths and pioneering innovative solutions. We don't adapt to change; we drive it. We are Finexus Inc., and we're rewriting the rules.
+            In a world where financial technology is the bridge between borrowers and lenders, we're your trailblazers, carving new paths with AI agents and pioneering innovative solutions. We don't adapt to change; we drive it. We are Finexus Inc., and we're rewriting the rules of lending.
           </p>
           <p className="text-lg font-semibold text-primary">
-            Finexus Inc. isn't just a name, it's a promise of transformation.
+            Finexus Inc. isn't just a name, it's a promise of AI-driven transformation.
           </p>
         </section>
 
