@@ -50,7 +50,7 @@ const ROICalculator = () => {
             <h3 className="font-semibold text-lg">Tell us about your lending operations</h3>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label>Number of loan officers and processors</Label>
+                <Label>Number of loan officers and Underwritters</Label>
                 <Input
                   type="number"
                   value={loanOfficers}
