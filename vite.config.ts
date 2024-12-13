@@ -16,18 +16,6 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: undefined,
-        assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
-          
-          const info = assetInfo.name.split('.');
-          const ext = info[info.length - 1];
-          if (/\.(png|jpe?g|gif|svg|ico)$/.test(assetInfo.name)) {
-            return `finexuswebsite/assets/images/[name]-[hash][extname]`;
-          }
-          return `finexuswebsite/assets/[name]-[hash][extname]`;
-        },
-        chunkFileNames: 'finexuswebsite/assets/[name]-[hash].js',
-        entryFileNames: 'finexuswebsite/assets/[name]-[hash].js',
       },
     },
     assetsInlineLimit: 0,
