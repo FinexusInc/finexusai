@@ -1,7 +1,7 @@
-import { render } from 'react-dom/server';
-import App from './App'; 
+import { renderToString } from 'react-dom/server';
+import App from './App';
 
-export const render = (url: string) => {
-  const html = renderToString(<App />); 
+export function render(url: string) {
+  const html = renderToString(<App />);
   return { html };
-};
+}
