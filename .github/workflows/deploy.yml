@@ -3,50 +3,42 @@ name: Deploy to Google Cloud Storage
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to deploy from
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code from GitHub repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js (you can specify your Node.js version if needed)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Change to the Node version you need
+          node-version: '18'
 
-      # Install dependencies
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
-      # Build the app using Vite
       - name: Build the app
-        run: |
-          npm run build
+        run: npm run build
 
-      # Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
-          version: '410.0.0'  # You can specify the desired version of gcloud
           project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
 
-      # Authenticate with Google Cloud using Service Account Key stored in GitHub Secrets
-      - name: Authenticate with Google Cloud
-        run: | 
-          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > key.json
-          gcloud auth activate-service-account --key-file=key.json
-
-      # Deploy the build to the GCS bucket
       - name: Deploy to Google Cloud Storage
         run: |
           gsutil -m rsync -r ./dist/ gs://finexusinc.ai/
-          gcloud storage buckets update gs://finexusinc.ai --website-main-page=index.html  
-         
-
+          gsutil iam ch allUsers:objectViewer gs://finexusinc.ai
+          gsutil web set -m index.html -e index.html gs://finexusinc.ai
+          
+      - name: Set CORS configuration
+        run: |
+          echo '[{"origin": ["*"],"method": ["GET"],"responseHeader": ["Content-Type"],"maxAgeSeconds": 3600}]' > cors.json
+          gsutil cors set cors.json gs://finexusinc.ai
+          rm cors.json
