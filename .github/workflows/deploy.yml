@@ -33,9 +33,7 @@ jobs:
 
       - name: Deploy to Google Cloud Storage
         run: |
-          gsutil -m rsync -r ./dist/ gs://finexusinc.ai/
-          gsutil iam ch allUsers:objectViewer gs://finexusinc.ai
-          gsutil web set -m index.html -e index.html gs://finexusinc.ai
+          gsutil -m rsync -r ./dist/ gs://finexusinc.ai/ 
           
       - name: Set CORS configuration
         run: |
