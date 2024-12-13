@@ -35,3 +35,13 @@ jobs:
           gsutil -m rsync -r dist gs://${{ secrets.GCP_BUCKET_NAME }}
           gsutil iam ch allUsers:objectViewer gs://${{ secrets.GCP_BUCKET_NAME }}
           gsutil web set -m index.html -e index.html gs://${{ secrets.GCP_BUCKET_NAME }}
+          
+          # Set correct Content-Type for files
+          gsutil -m setmeta -h "Content-Type:text/html" gs://${{ secrets.GCP_BUCKET_NAME }}/*.html
+          gsutil -m setmeta -h "Content-Type:text/css" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/*.css
+          gsutil -m setmeta -h "Content-Type:application/javascript" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/*.js
+          
+          # Configure CORS
+          echo '[{"origin": ["*"],"method": ["GET"],"responseHeader": ["Content-Type"],"maxAgeSeconds": 3600}]' > cors.json
+          gsutil cors set cors.json gs://${{ secrets.GCP_BUCKET_NAME }}
+          rm cors.json
