@@ -105,7 +105,7 @@ const Solutions = () => {
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4 animate-fade-in">Live Demo: Loan Processing Interface</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 animate-fade-in">Loan consultant agent in action</h3>
               <LoanConsultant />
             </div>
           </div>
