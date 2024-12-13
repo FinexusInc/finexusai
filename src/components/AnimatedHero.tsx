@@ -17,7 +17,10 @@ const AnimatedHero = () => {
           <button className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 md:px-8 py-3 md:py-4 rounded-full hover:shadow-glass transition-all duration-300 hover:-translate-y-1">
             Book a demo
           </button>
-          <ROICalculator />
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/60 to-primary/40 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+            <ROICalculator />
+          </div>
         </div>
       </div>
 
