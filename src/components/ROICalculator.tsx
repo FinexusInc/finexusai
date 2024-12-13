@@ -3,7 +3,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const ROICalculator = () => {
@@ -115,39 +114,28 @@ const ROICalculator = () => {
               <p className="text-sm text-muted-foreground">3-year total net savings</p>
             </div>
             
-            <Tabs defaultValue="table">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="table">Table</TabsTrigger>
-                <TabsTrigger value="chart">Chart</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="table" className="border rounded-lg p-4">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Year</TableHead>
-                      <TableHead>Staff costs</TableHead>
-                      <TableHead>AI service cost</TableHead>
-                      <TableHead>Net savings</TableHead>
+            <div className="border rounded-lg p-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Year</TableHead>
+                    <TableHead>Staff costs</TableHead>
+                    <TableHead>AI service cost</TableHead>
+                    <TableHead>Net savings</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {results.map((row) => (
+                    <TableRow key={row.year}>
+                      <TableCell>Year {row.year}</TableCell>
+                      <TableCell>${row.staffCost.toLocaleString()}</TableCell>
+                      <TableCell>${row.aiServiceCost.toLocaleString()}</TableCell>
+                      <TableCell>${row.savings.toLocaleString()}</TableCell>
                     </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {results.map((row) => (
-                      <TableRow key={row.year}>
-                        <TableCell>Year {row.year}</TableCell>
-                        <TableCell>${row.staffCost.toLocaleString()}</TableCell>
-                        <TableCell>${row.aiServiceCost.toLocaleString()}</TableCell>
-                        <TableCell>${row.savings.toLocaleString()}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TabsContent>
-              
-              <TabsContent value="chart">
-                Chart view coming soon...
-              </TabsContent>
-            </Tabs>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </DialogContent>
