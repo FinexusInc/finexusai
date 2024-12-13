@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: '/',
+  base: '/finexuswebsite/',  // Update this to match your bucket name
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

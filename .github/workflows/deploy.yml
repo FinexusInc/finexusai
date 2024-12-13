@@ -36,7 +36,7 @@ jobs:
           gsutil -m rm -r gs://${{ secrets.GCP_BUCKET_NAME }}/** || true
           
           # Sync all files with correct caching headers
-          gsutil -h "Cache-Control:public, max-age=3600" -m rsync -r dist gs://${{ secrets.GCP_BUCKET_NAME }}
+          gsutil -h "Cache-Control:public, max-age=3600" -m cp -r dist/* gs://${{ secrets.GCP_BUCKET_NAME }}/
           
           # Set public access
           gsutil iam ch allUsers:objectViewer gs://${{ secrets.GCP_BUCKET_NAME }}
