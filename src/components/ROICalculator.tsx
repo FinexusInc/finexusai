@@ -13,13 +13,29 @@ const ROICalculator = () => {
   const [aiAdoptionRate, setAiAdoptionRate] = useState(70);
 
   const calculateSavings = () => {
-    const yearlyBaseCost = loanOfficers * averageSalary;
+    const yearlyBaseCost = Math.max(0, loanOfficers * averageSalary);
     const years = [0, 1, 2, 3];
     
     return years.map(year => {
-      const staffCost = year === 0 ? yearlyBaseCost : yearlyBaseCost * (1 - (aiAdoptionRate / 100) * (year / 3));
-      const aiServiceCost = year === 0 ? 0 : (75000 + (monthlyApplications * 50 * 12));
-      const savings = year === 0 ? 0 : (yearlyBaseCost - staffCost - aiServiceCost);
+      // Base cost remains the same for year 0
+      if (year === 0) {
+        return {
+          year,
+          staffCost: yearlyBaseCost,
+          aiServiceCost: 0,
+          savings: 0
+        };
+      }
+
+      // Calculate reduced staff cost based on AI adoption
+      const reductionRate = (aiAdoptionRate / 100) * (year / 3);
+      const staffCost = Math.max(0, yearlyBaseCost * (1 - reductionRate));
+      
+      // Calculate AI service cost
+      const aiServiceCost = Math.max(0, 75000 + (monthlyApplications * 50 * 12));
+      
+      // Calculate savings (original cost - new costs)
+      const savings = Math.max(0, yearlyBaseCost - staffCost - aiServiceCost);
       
       return {
         year,
