@@ -42,15 +42,15 @@ jobs:
           gsutil iam ch allUsers:objectViewer gs://${{ secrets.GCP_BUCKET_NAME }}
           
           # Configure website serving
-          gsutil web set -m index.html gs://${{ secrets.GCP_BUCKET_NAME }}
+          gsutil web set -m index.html -e index.html gs://${{ secrets.GCP_BUCKET_NAME }}
           
           # Set correct Content-Type for files
-          gsutil -m setmeta -h "Content-Type:text/html" gs://${{ secrets.GCP_BUCKET_NAME }}/*.html
-          gsutil -m setmeta -h "Content-Type:text/css" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/*.css
-          gsutil -m setmeta -h "Content-Type:application/javascript" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/*.js
-          gsutil -m setmeta -h "Content-Type:image/x-icon" gs://${{ secrets.GCP_BUCKET_NAME }}/*.ico
-          gsutil -m setmeta -h "Content-Type:image/png" gs://${{ secrets.GCP_BUCKET_NAME }}/*.png
-          gsutil -m setmeta -h "Content-Type:image/svg+xml" gs://${{ secrets.GCP_BUCKET_NAME }}/*.svg
+          gsutil -m setmeta -h "Content-Type:text/html" gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.html
+          gsutil -m setmeta -h "Content-Type:text/css" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/**/*.css
+          gsutil -m setmeta -h "Content-Type:application/javascript" gs://${{ secrets.GCP_BUCKET_NAME }}/assets/**/*.js
+          gsutil -m setmeta -h "Content-Type:image/x-icon" gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.ico
+          gsutil -m setmeta -h "Content-Type:image/png" gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.png
+          gsutil -m setmeta -h "Content-Type:image/svg+xml" gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.svg
           
           # Configure CORS
           echo '[{"origin": ["*"],"method": ["GET"],"responseHeader": ["Content-Type","Cache-Control"],"maxAgeSeconds": 3600}]' > cors.json
