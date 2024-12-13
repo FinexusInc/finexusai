@@ -17,6 +17,10 @@ export default defineConfig(({ mode }) => ({
         manualChunks: undefined,
       },
     },
+    // Ensure all assets are included in the build
+    assetsInlineLimit: 0,
+    // Generate clean URLs
+    chunkSizeWarningLimit: 1000,
   },
   plugins: [
     react(),
