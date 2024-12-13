@@ -19,14 +19,11 @@ const AnimatedHero = () => {
           </button>
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/60 to-primary/40 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-            <button className="relative bg-gradient-to-r from-primary to-primary/80 text-white px-6 md:px-8 py-3 md:py-4 rounded-full hover:shadow-glass transition-all duration-300 hover:-translate-y-1">
-              Calculate ROI
-            </button>
+            <ROICalculator />
           </div>
         </div>
       </div>
 
-      {/* New Graphic Section */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 md:px-0">
         <div className="relative bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 backdrop-blur-sm border border-white/20 shadow-glass">
           {/* Robot Character */}
