@@ -17,6 +17,8 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: undefined,
         assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+          
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
           if (/\.(png|jpe?g|gif|svg|ico)$/.test(assetInfo.name)) {
