@@ -17,7 +17,7 @@ const AnimatedHero = () => {
             Book a demo
           </button>
           <button className="bg-gradient-glass backdrop-blur-sm border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-full hover:shadow-glass transition-all duration-300 hover:-translate-y-1 text-primary">
-            How it works
+            Calculate ROI
           </button>
         </div>
       </div>
